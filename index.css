@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+
+
+
+/* 
+ .header {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.logo {
+    width: 110px;
+    border-radius: 20px;
+}
+
+.nav-items > ul {
+    display: flex;
+    list-style-type: none;
+    font-size: 17px;
+    padding-top: 9px;
+    padding-right: 10px;
+}
+
+.nav-items > ul > li {
+    padding: 10px;
+    margin: 10px;
+}
+
+.header .nav-items ul li a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+
+.res-card {
+    width: 210px;
+    height: 420px;
+    padding: 5px;
+    background-color: rgb(217, 217, 217);
+    margin: 6px ;
+    border-radius: 8px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 300;
+}
+
+.res-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 20px;
+    
+}
+
+.res-container a {
+  text-decoration: none;  
+  color: inherit;        
+}
+
+
+.res-container a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+.res-card:hover {
+    cursor: pointer;
+    background-color: rgb(193, 193, 193);
+    transform: translateY(-3px);
+    transition: transform 0.4s ease;
+}
+
+.search {
+    padding: 10px;
+}
+
+.res-logo {
+    width: 100%;
+    height: 150px;
+    border-radius: 6px;
+}
+.filter {
+    display: flex;
+}
+
+.filter-btn {
+    margin: 10px;
+    cursor: pointer;
+}
+
+.login{
+    background-color: antiquewhite;
+    border-radius: 8px;
+    height: 40px;
+    padding: 0 20px;
+    margin-top: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    cursor: pointer;
+}
+
+.menu {
+    max-width: 850px;
+    margin: 25px auto;
+    padding: 10px;
+  }
+  
+  .menu h1 {
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .menu h2 {
+    margin-top: 20px;
+    font-size: 22px;
+  }
+  
+  .menu h3 {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .menu-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+  
+  .menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 13px 0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .menu-info {
+    flex: 1;
+  }
+  
+  .menu-info h4 {
+    font-size: 18px;
+    margin: 0 0 6px;
+  }
+  
+  .menu-desc {
+    font-size: 13px;
+    color: #444;
+    margin: 0 0 8px;
+  }
+  
+  .menu-price {
+    font-size: 15px;
+    font-weight: bold;
+    color: #222;
+  }
+  
+  .menu-img {
+    width: 90px;
+    height: 90px;
+    border-radius: 10px;
+    object-fit: cover;
+    background: #ececec;
+  }
+
+
+  .user-card {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 12px;
+    margin: 10px;
+  }
+
+  .avatar-url {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+  }
+
+  .online-status {
+    margin: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 300;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+   */

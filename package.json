@@ -1,0 +1,40 @@
+{
+  "name": "dashdine",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "parcel index.html",
+    "dev": "parcel index.html",
+    "build": "parcel build index.html",
+    "tailwind:init": "tailwindcss init -p"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "/**  * header  * -logo  * -nav-items  *  * body  * -search  * -restaurant container  * -restaurant card  *     - img  *     -name of res, cuisines, star rating, delivery time  *  * footer  * -copyright  * -links  * -address  * -contact  *  */",
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.17",
+    "autoprefixer": "^10.4.22",
+    "parcel": "^2.16.1",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.17"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.11.1",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "puppeteer": "^24.31.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^6.30.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aditya-dhungel/DashDine.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aditya-dhungel/DashDine/issues"
+  },
+  "homepage": "https://github.com/aditya-dhungel/DashDine#readme",
+  "type": "module"
+}
