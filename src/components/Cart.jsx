@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addItem, removeItem, clearCart } from "../utils/cartSlice";
+import { clearCart } from "../utils/cartSlice";
+import CartItemCard from "./CartItemCard";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -7,7 +8,7 @@ const Cart = () => {
   const cartItemsObj = useSelector((store) => store.cart.items);
   const cartItems = Object.values(cartItemsObj);
 
-  // total calculations
+  // total calculaton
   const itemTotal = cartItems.reduce((sum, cartItem) => {
     const qty = cartItem?.quantity ?? 0;
     const price =
@@ -16,9 +17,14 @@ const Cart = () => {
     return sum + price * qty;
   }, 0);
 
+  //Delivery Fee
+  const deliveryFee = itemTotal > 0 && itemTotal < 500 ? 40 : 0;
+
   const GST_RATE = 0.08; // 8%
   const gst = itemTotal * GST_RATE;
-  const toPay = itemTotal + gst;
+
+  // total delivery fee
+  const toPay = itemTotal + gst + deliveryFee;
 
   const handleClearCart = () => {
     dispatch(clearCart());
@@ -59,61 +65,10 @@ const Cart = () => {
                 </h2>
 
                 <div className="divide-y">
-                  {cartItems.map((cartItem) => {
-                    const info = cartItem?.info;
-                    const qty = cartItem?.quantity ?? 0;
-
-                    const price = (
-                      (info?.price ?? info?.defaultPrice ?? 0) / 100
-                    ).toFixed(0);
-
-                    return (
-                      <div
-                        key={info?.id}
-                        className="py-5 flex items-start justify-between gap-4"
-                      >
-                        {/*item info */}
-                        <div className="flex-1 text-left">
-                          <h3 className="font-bold text-lg text-gray-900 leading-snug">
-                            {info?.name}
-                          </h3>
-
-                          <p className="mt-1 text-gray-800 font-semibold">
-                            ₹{price}
-                          </p>
-
-                          {info?.description && (
-                            <p className="mt-2 text-sm text-gray-500 leading-relaxed line-clamp-2">
-                              {info.description}
-                            </p>
-                          )}
-                        </div>
-
-                        {/*quantity */}
-                        <div className="flex flex-col items-end gap-2">
-                          <div className="flex items-center justify-between w-[140px] border border-gray-200 rounded-xl shadow-sm px-3 py-2 bg-white">
-                            <button
-                              className="text-2xl font-bold text-gray-500 hover:text-gray-700 active:scale-95 transition"
-                              onClick={() => dispatch(removeItem(info?.id))}
-                            >
-                              −
-                            </button>
-
-                            <span className="text-lg font-bold text-green-600">
-                              {qty}
-                            </span>
-
-                            <button
-                              className="text-2xl font-bold text-green-600 hover:text-green-700 active:scale-95 transition"
-                              onClick={() => dispatch(addItem(info))}
-                            >
-                              +
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
+                  {/*CartItemCard UI */}
+                  {cartItems.map((cartItem) => (
+                    <CartItemCard key={cartItem?.info?.id} item={cartItem} />
+                  ))}
                 </div>
               </div>
             </div>
@@ -135,7 +90,11 @@ const Cart = () => {
 
                   <div className="flex justify-between">
                     <span>Delivery Fee</span>
-                    <span className="font-bold text-green-600">FREE</span>
+                    {deliveryFee === 0 ? (
+                      <span className="font-bold text-green-600">FREE</span>
+                    ) : (
+                      <span className="font-semibold">₹{deliveryFee}</span>
+                    )}
                   </div>
 
                   <div className="flex justify-between">
@@ -151,16 +110,14 @@ const Cart = () => {
                   </div>
                 </div>
 
-                <button className="w-full mt-5 py-3 rounded-xl bg-green-600 text-white font-bold shadow-md hover:bg-green-700 active:scale-95 transition">
+                <button className="w-full mt-5 py-3 rounded-xl bg-green-600 text-white font-bold shadow-md hover:scale-[1.02] hover:bg-green-700 active:scale-95 transition">
                   Proceed to Pay
                 </button>
-
-                
               </div>
 
-              {/*Review Note */}
+              {/*Review*/}
               <div className="w-full mt-6">
-                <div className="border border-gray-200 rounded-2xl bg-white shadow-sm p-6">
+                <div className="border border-gray-200 rounded-2xl bg-white shadow-md p-6">
                   <h3 className="text-xl font-bold text-gray-800">
                     Review your order and address details to avoid cancellations
                   </h3>
@@ -171,7 +128,7 @@ const Cart = () => {
                     cancelled, is non-refundable.
                   </p>
 
-                  <button className="mt-5 text-orange-500 font-semibold  hover:text-orange-600 transition">
+                  <button className="mt-5 text-orange-500 font-semibold hover:text-orange-600 transition">
                     Read policy
                   </button>
                 </div>
@@ -185,46 +142,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-// import { useDispatch, useSelector } from "react-redux";
-// import ItemList from "./ItemList";
-// import { clearCart } from "../utils/cartSlice";
-
-// const Cart = () => {
-//   //  This is now an OBJECT (not array) after we made cart dynamic
-//   // const cartItems = useSelector((store) => store.cart.items);
-
-//   //store.cart.items is object now, so take values -> array
-//   const cartItemsObj = useSelector((store) => store.cart.items);
-//   const cartItems = Object.values(cartItemsObj);
-
-//   const dispatch = useDispatch();
-
-//   const handleClearCart = () => {
-//     dispatch(clearCart());
-//   };
-
-//   return (
-//     <div className="text-center m-4 p-4">
-//       <h1 className="text-2xl font-bold text-amber-600">Cart</h1>
-//       <div className="w-6/12 m-auto">
-//         <button
-//           className="p-1 m-2 bg-amber-500 text-white rounded-lg transition-all duration-200 hover:bg-amber-600 hover:scale-105 active:scale-95"
-//           onClick={handleClearCart}
-//         >
-//           Clear Cart
-//         </button>
-
-//         {cartItems.length === 0 && (
-//           <h1 className="text-amber-500">
-//             Cart is empty, add items to the cart!
-//           </h1>
-//         )}
-
-//         <ItemList items={cartItems} />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Cart;

@@ -100,10 +100,10 @@ const RestaurantMenu = () => {
   //   </div>
   // );
   return (
-    <div className="menu text-center">
+    <div className="menu text-center px-4 sm:px-6">
       <h1 className="font-bold my-6 text-2xl">{name}</h1>
       <h2 className="m-3">Menu Items</h2>
-  
+
       {/* categories accordion */}
       <div>
         {categories.map((category, index) => (
@@ -117,10 +117,10 @@ const RestaurantMenu = () => {
       </div>
     </div>
   );
-  
 };
 
 export default RestaurantMenu;
+
 
 // import { useEffect, useState } from "react";
 // import Shimmer from "./Shimmer";

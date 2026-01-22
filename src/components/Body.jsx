@@ -86,7 +86,7 @@ const Body = () => {
   const onlineStatus = useOnlineStatus();
   if (onlineStatus === false)
     return (
-      <h1 className="online-status">
+      <h1 className="flex justify-center text-center font-serif text-xl font-semibold text-gray-700 mt-10">
         Looks like you are offline! Please check your internet❗️
       </h1>
     );
@@ -100,17 +100,17 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      {/* Premium Pill Filter Bar */}
+      {/* Filter Bar */}
       <div className="w-full flex justify-center px-4 mt-6">
         <div className="w-full max-w-5xl flex flex-col sm:flex-row items-center gap-4">
-          {/* Search Pill */}
+          {/* Search bar */}
           <div className="w-full sm:flex-1 flex items-center bg-white border border-gray-200 rounded-full shadow-md px-4 py-2 transition focus-within:ring-2 focus-within:ring-amber-300">
-            <span className="text-gray-400 text-lg mr-2">🔍</span>
+            {/* <span className="text-gray-400 text-lg mr-2"></span> */}
 
             <input
               type="text"
               className="w-full bg-transparent outline-none text-[15px] placeholder-gray-400"
-              placeholder="Search restaurants..."
+              placeholder="Find your favourite restaurant..."
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
               onKeyDown={(e) => {
@@ -128,7 +128,10 @@ const Body = () => {
             />
 
             <button
-              className="ml-3 px-6 py-2 rounded-full font-semibold text-white bg-gradient-to-r from-amber-500 to-orange-500 shadow-sm hover:shadow-md hover:scale-[1.02] transition active:scale-[0.97]"
+              className="ml-3 px-4 py-2 rounded-full font-semibold text-white 
+                        bg-linear-to-r from-amber-500 to-orange-500 shadow-sm 
+                        hover:shadow-md hover:scale-[1.02] transition-all duration-300 
+                        active:scale-[0.97] inline-flex items-center gap-2 whitespace-nowrap"
               onClick={() => {
                 const filteredRestaurant = listOfRestaurants.filter((res) => {
                   const name = res?.data?.name || res?.data?._raw?.name || "";
@@ -138,13 +141,14 @@ const Body = () => {
                 setFilteredRestaurants(filteredRestaurant);
               }}
             >
-              Search
+              <span>Search</span>
+              <span>🔍</span>
             </button>
           </div>
 
           {/* Top Rated Pill Button */}
           <button
-            className="w-full sm:w-auto px-6 py-3 rounded-full font-semibold bg-gradient-to-r from-amber-500 to-orange-500 border border-gray-200 shadow-md text-white hover:bg-gray-50 hover:shadow-lg hover:scale-[1.02] transition active:scale-[0.97]"
+            className="w-full sm:w-auto px-6 py-3 rounded-full font-semibold bg-linear-to-r from-amber-500 to-orange-500 border border-gray-200 shadow-md text-white hover:bg-gray-50 hover:shadow-lg hover:scale-[1.02] transition active:scale-[0.97]"
             onClick={() => {
               if (!Array.isArray(listOfRestaurants)) return;
 

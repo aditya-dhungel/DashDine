@@ -23,7 +23,9 @@ const About = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <h1 className="text-xl font-semibold text-gray-700">Loading About Page...</h1>
+        <h1 className="text-xl font-semibold text-gray-700">
+          Loading About Page...
+        </h1>
       </div>
     );
   }
@@ -32,7 +34,7 @@ const About = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <h1 className="text-xl font-semibold text-red-600">
-          Failed to load GitHub Profile 😢
+          Failed to load GitHub Profile!
         </h1>
       </div>
     );
@@ -49,13 +51,14 @@ const About = () => {
     public_repos,
     html_url,
   } = userInfo;
+  
 
   return (
     <div className="min-h-screen bg-gray-50 px-6 py-10">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-md p-8">
-          <h1 className="text-4xl font-bold text-gray-900">About DashDine</h1>
+          <h1 className="text-4xl font-bold text-gray-900">About Dash<span className="text-orange-500">Dine</span></h1>
           <p className="mt-3 text-gray-600 text-lg leading-relaxed">
             DashDine is a modern food ordering and restaurant discovery platform
             designed to deliver a smooth, fast, and visually clean user
@@ -68,19 +71,27 @@ const About = () => {
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="rounded-xl bg-gray-100 p-5">
               <p className="text-sm text-gray-500">Fast UI</p>
-              <p className="text-xl font-semibold text-gray-900">Optimized UX</p>
+              <p className="text-xl font-semibold text-gray-900">
+                Optimized UX
+              </p>
             </div>
             <div className="rounded-xl bg-gray-100 p-5">
               <p className="text-sm text-gray-500">Built With</p>
-              <p className="text-xl font-semibold text-gray-900">React + Tailwind</p>
+              <p className="text-xl font-semibold text-gray-900">
+                React + Tailwind
+              </p>
             </div>
             <div className="rounded-xl bg-gray-100 p-5">
               <p className="text-sm text-gray-500">Focus</p>
-              <p className="text-xl font-semibold text-gray-900">Dashboard UI</p>
+              <p className="text-xl font-semibold text-gray-900">
+                Dashboard UI
+              </p>
             </div>
             <div className="rounded-xl bg-gray-100 p-5">
               <p className="text-sm text-gray-500">Goal</p>
-              <p className="text-xl font-semibold text-gray-900">Food made simple</p>
+              <p className="text-xl font-semibold text-gray-900">
+                Food made simple
+              </p>
             </div>
           </div>
         </div>
@@ -118,7 +129,9 @@ const About = () => {
                     key={item.title}
                     className="border rounded-xl p-5 hover:shadow-sm transition"
                   >
-                    <h3 className="font-semibold text-gray-900">{item.title}</h3>
+                    <h3 className="font-semibold text-gray-900">
+                      {item.title}
+                    </h3>
                     <p className="text-gray-600 mt-2 text-sm">{item.desc}</p>
                   </div>
                 ))}
@@ -129,24 +142,53 @@ const About = () => {
             <div className="bg-white rounded-2xl shadow-md p-8">
               <h2 className="text-2xl font-bold text-gray-900">Tech Stack</h2>
               <p className="mt-3 text-gray-600">
-                DashDine is built using modern web technologies to ensure a fast,
-                scalable, and maintainable architecture.
+                DashDine is built using modern web technologies to ensure a
+                fast, scalable, and maintainable architecture.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
                 {[
-                  "React.js",
-                  "Tailwind CSS",
-                  "React Router",
-                  "API Integration",
-                  "Component-based UI",
-                  "Responsive Layout",
+                  {
+                    name: "React.js",
+                    style:
+                      "bg-gradient-to-r from-blue-50 to-indigo-50 text-indigo-700 border-indigo-200",
+                  },
+                  {
+                    name: "Tailwind CSS",
+                    style:
+                      "bg-gradient-to-r from-cyan-50 to-sky-50 text-sky-700 border-sky-200",
+                  },
+                  {
+                    name: "JavaScript",
+                    style:
+                      "bg-gradient-to-r from-teal-50 to-emerald-50 text-teal-700 border-teal-200",
+                  },
+                  {
+                    name: "React Router",
+                    style:
+                      "bg-gradient-to-r from-purple-50 to-fuchsia-50 text-purple-700 border-purple-200",
+                  },
+                  {
+                    name: "API Integration",
+                    style:
+                      "bg-gradient-to-r from-emerald-50 to-green-50 text-emerald-700 border-emerald-200",
+                  },
+                  {
+                    name: "Component-based UI",
+                    style:
+                      "bg-gradient-to-r from-pink-50 to-rose-50 text-rose-700 border-rose-200",
+                  },
+                  {
+                    name: "Responsive Layout",
+                    style:
+                      "bg-gradient-to-r from-amber-50 to-orange-50 text-orange-700 border-orange-200",
+                  },
                 ].map((tech) => (
                   <span
-                    key={tech}
-                    className="px-4 py-2 rounded-full bg-gray-100 text-gray-800 text-sm font-medium"
+                    key={tech.name}
+                    className={`px-4 py-2 rounded-full border text-sm font-semibold shadow-sm transition duration-200 hover:shadow-md hover:-translate-y-px ${tech.style}`}
                   >
-                    {tech}
+                    {tech.name}
                   </span>
                 ))}
               </div>
@@ -154,7 +196,9 @@ const About = () => {
 
             {/* Roadmap */}
             <div className="bg-white rounded-2xl shadow-md p-8">
-              <h2 className="text-2xl font-bold text-gray-900">Future Improvements</h2>
+              <h2 className="text-2xl font-bold text-gray-900">
+                Future Improvements
+              </h2>
               <ul className="mt-4 space-y-3 text-gray-700">
                 <li>✅ User Authentication (Login / Signup)</li>
                 <li>✅ Real-time Order Tracking</li>
@@ -165,10 +209,12 @@ const About = () => {
             </div>
           </div>
 
-          {/* Right Side (GitHub Profile Card) */}
+          {/*GitHub Profile Card */}
           <div className="space-y-6">
             <div className="bg-white rounded-2xl shadow-md p-8">
-              <h2 className="text-xl font-bold text-gray-900">Developer Profile</h2>
+              <h2 className="text-xl font-bold text-gray-900">
+                Developer Profile
+              </h2>
 
               <div className="mt-6 flex items-center gap-4">
                 <img
@@ -190,11 +236,13 @@ const About = () => {
 
               <div className="mt-6 space-y-3 text-sm text-gray-700">
                 <p>
-                  📍 Location:{" "}
-                  <span className="font-medium">{location || "Not mentioned"}</span>
+                  Location:{" "}
+                  <span className="font-medium">
+                    {location || "Not mentioned"}
+                  </span>
                 </p>
                 <p>
-                  📦 Public Repos:{" "}
+                  Public Repos:{" "}
                   <span className="font-medium">{public_repos}</span>
                 </p>
               </div>
@@ -213,9 +261,9 @@ const About = () => {
             <div className="bg-white rounded-2xl shadow-md p-8">
               <h2 className="text-xl font-bold text-gray-900">Our Mission</h2>
               <p className="mt-3 text-gray-600 text-sm leading-relaxed">
-                To build a fast, intuitive, and modern dining platform that feels
-                premium — where users can discover great food and order without
-                friction.
+                To build a fast, intuitive, and modern dining platform that
+                feels premium — where users can discover great food and order
+                without friction.
               </p>
             </div>
 
@@ -228,11 +276,16 @@ const About = () => {
 
               <div className="mt-4 space-y-2 text-sm">
                 <p className="text-gray-700">
-                  📩 Email: <span className="font-medium">adityadhungel018@gmail.com</span>
+                  Email:{" "}
+                  <span className="font-medium">
+                    adityadhungel018@gmail.com
+                  </span>
                 </p>
                 <p className="text-gray-700">
-                  🔗 LinkedIn:{" "}
-                  <span className="font-medium">linkedin.com/in/aditya-dhungel</span>
+                  LinkedIn:{" "}
+                  <span className="font-medium">
+                    linkedin.com/in/aditya-dhungel
+                  </span>
                 </p>
               </div>
             </div>

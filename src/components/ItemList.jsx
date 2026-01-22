@@ -10,7 +10,7 @@ const ItemList = ({ items }) => {
   const cartItems = useSelector((store) => store.cart.items);
 
   return (
-    <div>
+    <div className="px-4 sm:px-6">
       {items.map((item) => {
         const info = item?.card?.info;
 
@@ -80,10 +80,6 @@ const ItemList = ({ items }) => {
                     </div>
                   )}
                 </div>
-
-                <p className="text-center text-gray-500 mt-8 text-sm">
-                  Customisable
-                </p>
               </div>
             </div>
           </div>
@@ -94,6 +90,7 @@ const ItemList = ({ items }) => {
 };
 
 export default ItemList;
+
 
 
 

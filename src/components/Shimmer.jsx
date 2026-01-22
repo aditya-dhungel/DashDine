@@ -2,7 +2,7 @@ const Shimmer = ({ }) => {
   // count = how many shimmer cards you want
   return (
     <div className="shimmer-container flex flex-wrap justify-center">
-      {Array.from({ length: 16 }).map((_, idx) => (
+      {Array.from({ length: 15 }).map((_, idx) => (
         <div className="shimmer-card" key={idx}>
           <div className="img-shimmer"></div>
           <div className="name-shimmer"></div>
