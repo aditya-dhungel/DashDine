@@ -140,7 +140,7 @@ const About = () => {
 
             {/* Tech Stack */}
             <div className="bg-white rounded-2xl shadow-md p-8">
-              <h2 className="text-2xl font-bold text-gray-900">Tech Stack</h2>
+              <h2 className="text-2xl font-bold text-gray-900">Tech Stack and features</h2>
               <p className="mt-3 text-gray-600">
                 DashDine is built using modern web technologies to ensure a
                 fast, scalable, and maintainable architecture.
@@ -200,11 +200,9 @@ const About = () => {
                 Future Improvements
               </h2>
               <ul className="mt-4 space-y-3 text-gray-700">
-                <li>✅ User Authentication (Login / Signup)</li>
-                <li>✅ Real-time Order Tracking</li>
                 <li>✅ Admin Dashboard for Restaurant Owners</li>
-                <li>✅ Payment Gateway Integration</li>
                 <li>✅ Saved Favorites & Order History</li>
+                <li>✅ A dedicated Grocery section</li>
               </ul>
             </div>
           </div>

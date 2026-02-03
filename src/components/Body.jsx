@@ -84,22 +84,25 @@ const Body = () => {
   };
 
   const onlineStatus = useOnlineStatus();
-  if (onlineStatus === false)
+  if (!onlineStatus) {
     return (
-      <h1 className="flex justify-center text-center font-serif text-xl font-semibold text-gray-700 mt-10">
-        Looks like you are offline! Please check your internet❗️
-      </h1>
+      <div className="min-h-[calc(100vh-64px)] bg-gray-50 px-4 pt-10 flex justify-center">
+        <div className="inline-block bg-white border border-gray-200 rounded-2xl shadow-md px-6 py-5 text-center">
+          <p className="text-lg font-semibold text-gray-900">You’re offline</p>
+  
+          <p className="mt-1 text-sm text-gray-600 max-w-[260px] mx-auto">
+            Please connect to the internet to load restaurants.
+          </p>
+        </div>
+      </div>
     );
-
-  //Shimmmer UI- conditional rendering(replaced by ternary operator below in return statement)
-  // if(listOfRestaurants.length === 0){
-  //   return <Shimmer />;
-  // }
+  }
+  
 
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
+    <div className="pb-6">
       {/* Filter Bar */}
       <div className="w-full flex justify-center px-4 mt-6">
         <div className="w-full max-w-5xl flex flex-col sm:flex-row items-center gap-4">
@@ -144,35 +147,12 @@ const Body = () => {
               <span>Search</span>
               <span>🔍</span>
             </button>
+            
           </div>
 
-          {/* Top Rated Pill Button */}
-          <button
-            className="w-full sm:w-auto px-6 py-3 rounded-full font-semibold bg-linear-to-r from-amber-500 to-orange-500 border border-gray-200 shadow-md text-white hover:bg-gray-50 hover:shadow-lg hover:scale-[1.02] transition active:scale-[0.97]"
-            onClick={() => {
-              if (!Array.isArray(listOfRestaurants)) return;
-
-              const filteredList = listOfRestaurants.filter((res) => {
-                const rating = Number(res?.data?.avgRating) || 0;
-                return rating > 4;
-              });
-
-              setListOfRestaurants(filteredList);
-            }}
-          >
-            Top Rated Restaurants
-          </button>
+         
         </div>
       </div>
-
-      {/* <div className="res-container">
-        {filteredRestaurants?.map((restaurant, idx) => (
-          <RestaurantCard
-            key={restaurant?.data?.id ?? idx}
-            resData={restaurant}
-          />
-        ))}
-      </div> */}
       <div className="flex flex-wrap justify-center">
         {filteredRestaurants?.map((restaurant, idx) => (
           <Link
@@ -194,70 +174,3 @@ const Body = () => {
 
 export default Body;
 
-// import RestaurantCard from "./RestaurantCard";
-// // import resList from "../utils/mockData";
-// import { useState, useEffect } from "react";
-
-// const Body = () => {
-//   // local state variable - start with mock data
-//   const [listOfRestaurants, setListOfRestaurants] = useState([]);
-
-//   useEffect(() => {
-//     fetchData();
-//   }, []);
-
-//   const fetchData = async () => {
-//     try {
-//       const data = await fetch(
-//         "https://www.swiggy.com/dapi/restaurants/list/v5?lat=29.8654242&lng=77.886746&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-//       );
-
-//       const json = await data.json();
-//       // console.log(json);
-
-//       // safer access with optional chaining and fallback to mock data
-//       const restaurants =
-//         json?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle
-//         ?.restaurants ?? resList;
-
-//       setListOfRestaurants(restaurants);
-//     } catch (err) {
-//       console.error("fetchData error:", err);
-//       // fallback to mock data on error
-//       setListOfRestaurants(resList);
-//     }
-//   };
-
-//   return (
-//     <div className="body">
-//       <div className="filter">
-//         <button
-//           className="filter-btn"
-//           onClick={() => {
-//             console.log("BTN clicked");
-//             // rating filter
-//             const filteredList = listOfRestaurants.filter(
-//               (res) => Number(res?.data?.avgRating) > 4
-//             );
-//             console.log(filteredList);
-//             setListOfRestaurants(filteredList);
-//           }}
-//         >
-//           Top Rated Restaurants
-//         </button>
-//       </div>
-
-//       <div className="res-container">
-//         {/* //Restaurant card */}
-//         {listOfRestaurants.map((restaurant) => (
-//           <RestaurantCard
-//             key={restaurant.info.id}
-//             resData={restaurant}
-//           />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Body;

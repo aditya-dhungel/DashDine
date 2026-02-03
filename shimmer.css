@@ -8,7 +8,7 @@
 
 /* Card layout */
 .shimmer-card {
-  width: 80vw; /* ✅ mobile width = 80vw */
+  width: 80vw; /* mobile width = 80vw */
   height: 430px;
   background-color: #f0f0f0;
   margin: 10px;

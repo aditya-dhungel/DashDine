@@ -1,5 +1,9 @@
+import { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, removeItem } from "../utils/cartSlice";
+import { AuthContext } from "../utils/AuthContext";
+import { useNavigate } from "react-router-dom";
+import Toast from "./Toast";
 
 const IMG_CDN_URL =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200,h_200/";
@@ -8,6 +12,20 @@ const FALLBACK_IMAGE = "https://via.placeholder.com/200?text=No+Image";
 const ItemList = ({ items }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((store) => store.cart.items);
+
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [showToast, setShowToast] = useState(false);
+
+  const handleAdd = (info) => {
+    if (!user) {
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 1800);
+      navigate("/login");
+      return;
+    }
+    dispatch(addItem(info));
+  };
 
   return (
     <div className="px-4 sm:px-6">
@@ -54,7 +72,7 @@ const ItemList = ({ items }) => {
                   {quantity === 0 ? (
                     <button
                       className="bg-white text-green-600 font-bold px-10 py-2 rounded-xl shadow-md border border-gray-200"
-                      onClick={() => dispatch(addItem(info))}
+                      onClick={() => handleAdd(info)}
                     >
                       ADD
                     </button>
@@ -73,7 +91,7 @@ const ItemList = ({ items }) => {
 
                       <button
                         className="text-green-600 font-bold text-xl"
-                        onClick={() => dispatch(addItem(info))}
+                        onClick={() => handleAdd(info)}
                       >
                         +
                       </button>
@@ -85,69 +103,9 @@ const ItemList = ({ items }) => {
           </div>
         );
       })}
+      <Toast show={showToast} message="Please login to add items to cart 🔒" />
     </div>
   );
 };
 
 export default ItemList;
-
-
-
-
-
-
-
-// import { useDispatch } from "react-redux";
-// import { CDN_URL } from "../utils/constants";
-// import { addItem } from "../utils/cartSlice";
-
-// const ItemList = ({ items }) => {
-//   const dispatch = useDispatch();
-
-//   const handleAddItem = (item) => {
-//     //disptch action
-//     dispatch(addItem(item));
-//     // console.log("Clicked item:", item);
-//   };
-
-//   return (
-//     <div>
-//       {items.map((item) => (
-//         <div
-//           key={item.card.info.id}
-//           className="p-2 m-2 border border-b border-gray-500 border-solid text-left justify-between"
-//         >
-//           <div className="">
-//             <div className="py-2 flex flex-col">
-//               <span className="font-medium">{item.card.info.name}</span>
-
-//               <span>
-//                 -₹
-//                 {item.card.info.price
-//                   ? item.card.info.price / 100
-//                   : item.card.info.defaultPrice / 100}
-//               </span>
-//             </div>
-//           </div>
-//           <p className="text-xs text-gray-600">{item.card.info.description}</p>
-//           <div className="w-3/12 p-4">
-//             <div className="absolute">
-//               <button
-//                 className="p-2 mx-16 rounded-lg bg-black text-white shadow-lg"
-//                 onClick={() => handleAddItem(item)}
-//               >
-//                 Add +
-//               </button>
-//             </div>
-//             <img
-//               src={CDN_URL + item.card.info.imageId}
-//               className="w-full h-20 object-cover rounded"
-//             />
-//           </div>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default ItemList;
