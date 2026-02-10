@@ -335,8 +335,8 @@ const Header = () => {
                 {/* Profile section in mobile menu ONLY */}
                 {user && (
                   <div className="w-full px-4 py-4 border-b border-gray-100 flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-orange-500 via-orange-400 to-yellow-400 p-[2px] shadow-sm">
-                      <div className="w-full h-full rounded-full bg-white p-[2px]">
+                    <div className="w-12 h-12 rounded-full bg-linear-to-tr from-orange-500 via-orange-400 to-yellow-400 p-0.5 shadow-sm">
+                      <div className="w-full h-full rounded-full bg-white p-0.5">
                         <div className="w-full h-full rounded-full overflow-hidden">
                           <img
                             src={user?.photoURL || FALLBACK_AVATAR}
