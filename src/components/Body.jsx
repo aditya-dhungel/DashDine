@@ -32,7 +32,7 @@ const Body = () => {
       const json = await data.json();
       // console.log(json);
 
-      // find restaurants array safely (Swiggy nesting can change)
+      // find restaurants array safely (Swiggy nestig can change)
       const rawRestaurants =
         json?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants ||
@@ -41,7 +41,7 @@ const Body = () => {
         )?.card?.card?.gridElements?.infoWithStyle?.restaurants ||
         [];
 
-      // normalize each item into the shape your components expect: { data: {...} }
+      // normalize each item into the shape your compnents expect: { data: {...} }
       const normalized = rawRestaurants.map((item, idx) => {
         const info = item?.info ?? item?.data ?? item;
 
@@ -86,7 +86,7 @@ const Body = () => {
   const onlineStatus = useOnlineStatus();
   if (!onlineStatus) {
     return (
-      <div className="min-h-[calc(100vh-64px)] bg-gray-50 px-4 pt-10 flex justify-center">
+      <div className=" bg-gray-50 px-4 pt-10 flex justify-center items-center">
         <div className="inline-block bg-white border border-gray-200 rounded-2xl shadow-md px-6 py-5 text-center">
           <p className="text-lg font-semibold text-gray-900">You’re offline</p>
   
