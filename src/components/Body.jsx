@@ -24,10 +24,14 @@ const Body = () => {
     setSearchText,
     handleSearch,
   } = useRestaurants();
+
+  console.log("Restaurants:", restaurants);
+  console.log("Filtered:", filteredRestaurants);
+  
   const onlineStatus = useOnlineStatus();
 
   if (!onlineStatus) return <OfflineBanner />;
-  if (restaurants.length === 0) return <Shimmer />;
+  // if (restaurants.length === 0) return <Shimmer />;
 
   return (
     <div className="pb-6">

@@ -24,6 +24,7 @@
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "firebase": "^12.8.0",
+    "framer-motion": "^12.34.2",
     "puppeteer": "^24.31.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

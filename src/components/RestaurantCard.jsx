@@ -13,7 +13,7 @@ const RestaurantCard = (props) => {
   } = resData?.data || {};
 
   return (
-    <div className="shadow-md ml-3 w-[80vw] sm:w-[250px] h-[430px] p-1.5 m-1.5 rounded-lg font-light font-sans cursor-pointer hover:bg-linear-to-b hover:from-orange-100 hover:to-white transition-all duration-300 hover:scale-95 transition duration-250 ease-in-out ">
+    <div className="shadow-md ml-3 w-[80vw] sm:w-[250px] h-[430px] p-1.5 m-1.5 rounded-lg font-light font-sans cursor-pointer hover:bg-linear-to-b hover:from-orange-100 hover:to-white transition duration-250 hover:scale-95 transition duration-250 ease-in-out ">
       <img
         className="rounded-lg h-[180px] w-full object-cover"
         alt="res-logo"

@@ -7,7 +7,6 @@ import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
 import Cart from "./components/Cart";
-import CartSync from "./utils/CartSync";
 import Login from "./components/Login";
 
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
@@ -16,6 +15,7 @@ import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import { AuthProvider } from "./utils/AuthContext";
 
+
 // lazy loading
 const Grocery = lazy(() => import("./components/Grocery"));
 const About = lazy(() => import("./components/About"));
@@ -23,7 +23,6 @@ const About = lazy(() => import("./components/About"));
 const AppLayout = () => {
   return (
     <div className="app">
-      <CartSync />
       <Header />
       <Outlet />
     </div>

@@ -18,7 +18,10 @@ const normalizeRestaurants = (rawRestaurants) =>
         cuisines: info?.cuisines ?? info?.variants ?? [],
         costForTwo: info?.costForTwoMessage ?? info?.costForTwo ?? "",
         deliveryTime:
-          info?.sla?.deliveryTime ?? info?.deliveryTime ?? info?.minDeliveryTime ?? "",
+          info?.sla?.deliveryTime ??
+          info?.deliveryTime ??
+          info?.minDeliveryTime ??
+          "",
         promoted: info?.promoted ?? false,
         _raw: info,
       },
@@ -26,10 +29,10 @@ const normalizeRestaurants = (rawRestaurants) =>
   });
 
 const extractRestaurants = (json) =>
-  json?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants ||
-  json?.data?.cards?.find(
-    (c) => c.card?.card?.id === "restaurant_grid_listing"
-  )?.card?.card?.gridElements?.infoWithStyle?.restaurants ||
+  json?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle
+    ?.restaurants ||
+  json?.data?.cards?.find((c) => c.card?.card?.id === "restaurant_grid_listing")
+    ?.card?.card?.gridElements?.infoWithStyle?.restaurants ||
   [];
 
 const useRestaurants = () => {
@@ -42,11 +45,34 @@ const useRestaurants = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await fetch(SWIGGY_URL);
+  //     const json = await response.json();
+  //     const normalized = normalizeRestaurants(extractRestaurants(json));
+  //     setRestaurants(normalized);
+  //     setFilteredRestaurants(normalized);
+  //   } catch (err) {
+  //     console.error("fetchData error:", err);
+  //     setRestaurants([]);
+  //   }
+  // };
   const fetchData = async () => {
     try {
       const response = await fetch(SWIGGY_URL);
+
+      console.log("Status:", response.status);
+
       const json = await response.json();
-      const normalized = normalizeRestaurants(extractRestaurants(json));
+
+      console.log("Full JSON:", json);
+
+      const extracted = extractRestaurants(json);
+      console.log("Extracted:", extracted);
+
+      const normalized = normalizeRestaurants(extracted);
+      console.log("Normalized:", normalized);
+
       setRestaurants(normalized);
       setFilteredRestaurants(normalized);
     } catch (err) {
@@ -63,7 +89,13 @@ const useRestaurants = () => {
     setFilteredRestaurants(filtered);
   };
 
-  return { restaurants, filteredRestaurants, searchText, setSearchText, handleSearch };
+  return {
+    restaurants,
+    filteredRestaurants,
+    searchText,
+    setSearchText,
+    handleSearch,
+  };
 };
 
 export default useRestaurants;
